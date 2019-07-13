@@ -6,18 +6,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9605347e-4d13-467a-837f-43dc12d4d7d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/nihanth/com/drreddy/Faq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nihanth/com/drreddy/Home_main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/activity_faq.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/activity_home_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/caches/build_file_checksums.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9605347e-4d13-467a-837f-43dc12d4d7d4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
