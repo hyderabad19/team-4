@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "788574000477-8sk2r400s89osjtira6ugrqer0fgkrcl.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "nihanth.com.drreddy",
-            "certificate_hash": "e3252152684aa0cddff26b7de94369996622ad82"
-          }
-        },
-        {
           "client_id": "788574000477-4ckso1hov108v1afhnosgiogtb12bb9r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
