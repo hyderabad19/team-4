@@ -12,9 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <activity android:name=".Catalogue" />
         <activity android:name=".help" />
         <activity android:name=".update_profile" />
+||||||| merged common ancestors
+=======
+        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+        </activity>
+
+>>>>>>> origin/ashok
 ||||||| merged common ancestors
 =======
         <activity android:name=".HomeActivity"></activity>
