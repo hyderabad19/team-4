@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "788574000477",
+    "firebase_url": "https://team-4-fb860.firebaseio.com",
+    "project_id": "team-4-fb860",
+    "storage_bucket": "team-4-fb860.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788574000477:android:751a101e08dc9335",
+        "android_client_info": {
+          "package_name": "nihanth.com.drreddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788574000477-8sk2r400s89osjtira6ugrqer0fgkrcl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nihanth.com.drreddy",
+            "certificate_hash": "e3252152684aa0cddff26b7de94369996622ad82"
+          }
+        },
+        {
+          "client_id": "788574000477-4ckso1hov108v1afhnosgiogtb12bb9r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nihanth.com.drreddy",
+            "certificate_hash": "93ab1d4412854d488394f0dd25a7d5ed8496dd2b"
+          }
+        },
+        {
+          "client_id": "788574000477-mj9sfsnv6fdm08p2aa971ldnafjs7qu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5U6-2UWzQxcXWGYboUCPGL_Hpt524vBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788574000477-mj9sfsnv6fdm08p2aa971ldnafjs7qu4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
