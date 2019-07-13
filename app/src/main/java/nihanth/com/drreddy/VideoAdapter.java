@@ -66,6 +66,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHold>{
         datasource = new DefaultDataSourceFactory(context,userAgent, (TransferListener<? super DataSource>) bandwidthMeter);
         initializePlayer(0,i);
         exoPlayerView.setPlayer(exoPlayer);
+        final int is = i;
 
         viewHold.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +74,15 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHold>{
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 //intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_EMAIL, "nihanth876@gmail.com");
+                context.startActivity(intent);
+            }
+        });
+        viewHold.imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //final int s = i;
+                Intent intent = new Intent(context,FullScreenActivity.class);
+                intent.putExtra("video_link",strings.get(is));
                 context.startActivity(intent);
             }
         });
@@ -89,11 +99,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHold>{
 
         public CardView cardView;
         public ImageView imageView;
+        public ImageView imageView1;
 
         public ViewHold(View itemView) {
             super(itemView);
             exoPlayerView = itemView.findViewById(R.id.player_view);
             imageView = (ImageView)itemView.findViewById(R.id.flag);
+            imageView1 = itemView.findViewById(R.id.full);
             cardView = itemView.findViewById(R.id.card);
             //imageView = itemView.findViewById(R.id.image_card_detail);
         }
