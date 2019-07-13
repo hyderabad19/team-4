@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         db= FirebaseFirestore.getInstance();
         mAuth= FirebaseAuth.getInstance();
         mainToolbar=(android.support.v7.widget.Toolbar) findViewById(R.id.main_toolbar);
-        simpleGrid = (GridView) findViewById(R.id.simpleGridView); // init GridView
+       // simpleGrid = (GridView) findViewById(R.id.simpleGridView); // init GridView
         // Create an object of CustomAdapter and set Adapter to GirdView
 
     }
