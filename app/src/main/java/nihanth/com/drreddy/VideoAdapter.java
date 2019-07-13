@@ -1,6 +1,7 @@
 package nihanth.com.drreddy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -24,6 +25,7 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveVideoTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.PlaybackControlView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
@@ -32,20 +34,22 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.util.Util;
 
+import java.util.List;
+
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHold>{
 
     Context context;
-    String strings;
+    List<String> strings;
     SimpleExoPlayer exoPlayer;
     LoadControl loadControl;
     SimpleExoPlayerView exoPlayerView;
     DataSource.Factory datasource;
 
 
-    VideoAdapter(Context context , String stringList){
+    VideoAdapter(Context context , List<String> stringList){
         this.context=context;
         this.strings=stringList;
-        Log.d("hello",stringList);
+        Log.d("hello",""+stringList);
     }
 
     @NonNull
@@ -60,13 +64,23 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHold>{
         String userAgent = Util.getUserAgent(context, "DrReddy");
         BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
         datasource = new DefaultDataSourceFactory(context,userAgent, (TransferListener<? super DataSource>) bandwidthMeter);
-        initializePlayer(0);
+        initializePlayer(0,i);
         exoPlayerView.setPlayer(exoPlayer);
+
+        viewHold.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                //intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_EMAIL, "nihanth876@gmail.com");
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return strings.size();
     }
 
     public class ViewHold extends RecyclerView.ViewHolder {
@@ -79,14 +93,16 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHold>{
         public ViewHold(View itemView) {
             super(itemView);
             exoPlayerView = itemView.findViewById(R.id.player_view);
+            imageView = (ImageView)itemView.findViewById(R.id.flag);
             cardView = itemView.findViewById(R.id.card);
             //imageView = itemView.findViewById(R.id.image_card_detail);
         }
 
-
     }
 
-    private void initializePlayer(long current) {
+
+
+    private void initializePlayer(long current,int i) {
 
 
         BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
@@ -97,7 +113,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHold>{
         exoPlayer.setPlayWhenReady(false);
         DefaultExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
         if (strings!=null) {
-            Uri videoUri = Uri.parse(strings);
+            Uri videoUri = Uri.parse(strings.get(i));
             MediaSource mediaSource = new ExtractorMediaSource(videoUri,
                     datasource, extractorsFactory, null, null);
             if (current != C.TIME_UNSET){
