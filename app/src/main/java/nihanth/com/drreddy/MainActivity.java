@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent=getIntent();
+        String course=intent.getStringExtra("course");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -50,7 +52,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
         db = FirebaseFirestore.getInstance();
-        db.collection("Videos").document("Accounting")
+
+        db.collection("Videos").document(course)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
