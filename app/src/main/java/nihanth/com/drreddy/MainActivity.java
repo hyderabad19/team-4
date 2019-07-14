@@ -96,14 +96,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-                    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent myIntent = new Intent(view.getContext(), Notify.class);
+                startActivityForResult(myIntent, 0);
             }
-        });
+        });*/
 
         db.collection("Videos").document(course)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -192,17 +192,16 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            Intent ne=new Intent(MainActivity.this,QuizActivity.class);
-            startActivity(ne);
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.quizzes) {
+            // Handle the camera action
+        } else if (id == R.id.upload) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.survey) {
+            Intent myIntent = new Intent(MainActivity.this, Surveys.class);
+            startActivityForResult(myIntent, 0);
+        } else if (id == R.id.tools) {
             Intent ne=new Intent(MainActivity.this,FaqActivity.class);
             startActivity(ne);
-
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
