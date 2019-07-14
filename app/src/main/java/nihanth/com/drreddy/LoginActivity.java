@@ -61,19 +61,20 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task)
                         {
-
+                            Log.i("err",mAuth.getCurrentUser().getUid());
+                            final String uid=mAuth.getCurrentUser().getUid();
                             if(task.isSuccessful()){
-                                db.collection("Users").document(eid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                db.collection("Users").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                         if(task.isSuccessful()){
                                             if(!task.getResult().exists()){
                                                 Map<String, Object> userMap = new HashMap<>();
                                                 userMap.put("email",eid);
-                                                userMap.put("name","        ");
-                                                userMap.put("phone","        ");
+                                                userMap.put("name","");
+                                                userMap.put("phone","");
                                                 userMap.put("image"," ");
-                                                db.collection("Users").document(eid).set(userMap).addOnCompleteListener(
+                                                db.collection("Users").document(uid).set(userMap).addOnCompleteListener(
                                                         new OnCompleteListener<Void>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {

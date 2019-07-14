@@ -18,9 +18,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -33,17 +37,66 @@ public class MainActivity extends AppCompatActivity
     RecyclerView recyclerView;
     List<String> set=new ArrayList<>();
     FirebaseFirestore db;
+    private ImageView userimage;
+    private TextView username;
+    private TextView usermail;
+    private FirebaseAuth mAuth;
+    private String email;
+    private String curid;
+    private String course;
+
+
     //ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent=getIntent();
-        String course=intent.getStringExtra("course");
+        course=intent.getStringExtra("course");
+        mAuth=FirebaseAuth.getInstance();
+        curid=mAuth.getCurrentUser().getUid();
+
+        Log.i("lol"," kjdfh "+curid);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView= (View) navigationView.getHeaderView(0);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        userimage = headerView.findViewById(R.id.imageView);
+        username=headerView.findViewById(R.id.username_main);
+        usermail=headerView.findViewById(R.id.usernail_main);
+
+        headerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(MainActivity.this,update_profile.class);
+                startActivity(intent1);
+            }
+        });
+
+        db = FirebaseFirestore.getInstance();
+        mAuth=FirebaseAuth.getInstance();
+        db.collection("Users").document(curid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    if (task.getResult().exists()) {
+
+                        String name = task.getResult().getString("name");
+                        String image = task.getResult().getString("image");
+                        email=task.getResult().getString("email");
+                        usermail.setText(email);
+                        Log.i("qwe","  "+email);
+                        username.setText(name);
+                        RequestOptions placeholderRequest = new RequestOptions();
+                        Glide.with(MainActivity.this).setDefaultRequestOptions(placeholderRequest).load(image).into(userimage);
+                    }
+                }
+            }
+        });
+
+                    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +104,6 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-        db = FirebaseFirestore.getInstance();
 
         db.collection("Videos").document(course)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -101,7 +153,7 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -151,6 +203,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+            logout();
 
         }
 
@@ -158,4 +211,16 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void logout(){
+        mAuth.signOut();
+        sendToLogin();
+
+    }
+    private void sendToLogin() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

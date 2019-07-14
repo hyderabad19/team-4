@@ -53,7 +53,9 @@ public class update_profile extends AppCompatActivity {
     private FirebaseFirestore db ;
     private String eid;
     private String down_uri;
+    String email;
     private Boolean isChanged;
+    String curid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,25 +66,26 @@ public class update_profile extends AppCompatActivity {
         setSupportActionBar(setupToolbar);
         getSupportActionBar().setTitle("Account Setup");*/
         setupimage = findViewById(R.id.setupimage);
-        setupName=findViewById(R.id.username);
+        setupName=findViewById(R.id.username_main);
         setupphone=findViewById(R.id.userphone);
         setupButton=findViewById(R.id.update_button);
-        usermail=findViewById(R.id.usermail);
+        usermail=findViewById(R.id.usernail_main);
         ibar=findViewById(R.id.ibar);
 
         mStorageRef= FirebaseStorage.getInstance().getReference();
         mAuth=FirebaseAuth.getInstance();
+         curid=mAuth.getCurrentUser().getUid();
 
 
         db = FirebaseFirestore.getInstance();
-        db.collection("Users").document(eid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        db.collection("Users").document(curid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
                     if(task.getResult().exists()){
                         Toast.makeText(update_profile.this,"Data Exists:",Toast.LENGTH_LONG).show();
 
-                        String email=task.getResult().getString("email");
+                         email=task.getResult().getString("email");
                         String phone=task.getResult().getString("phone");
                         String name=task.getResult().getString("name");
                         String image=task.getResult().getString("image");
@@ -140,7 +143,7 @@ public class update_profile extends AppCompatActivity {
                 final String uname=setupName.getText().toString();
                 final String uphone=setupphone.getText().toString();
                 if (!TextUtils.isEmpty(uname) && mainimage != null) {
-                    if (isChanged) {
+
 
                         ibar.setVisibility(View.VISIBLE);
                         final String uid = mAuth.getCurrentUser().getUid();
@@ -169,7 +172,7 @@ public class update_profile extends AppCompatActivity {
                         storetoFirestore(null, uname,uphone);
                     }
                 }
-            }
+
         });
 
 
@@ -184,12 +187,12 @@ public class update_profile extends AppCompatActivity {
             downloadUri=mainimage;
         }
         Map<String, Object> userMap = new HashMap<>();
-        userMap.put("email", eid);
+        userMap.put("email", email);
         userMap.put("name", uname);
         userMap.put("image", downloadUri.toString());
         userMap.put("phone",uphone);
 
-        db.collection("Users").document(eid).set(userMap).addOnCompleteListener(
+        db.collection("Users").document(curid).set(userMap).addOnCompleteListener(
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
