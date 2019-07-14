@@ -26,6 +26,8 @@
         <activity android:name=".help" />
         <activity android:name=".update_profile" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".FullScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
