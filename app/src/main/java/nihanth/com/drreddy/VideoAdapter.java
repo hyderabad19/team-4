@@ -68,7 +68,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHold>{
         exoPlayerView.setPlayer(exoPlayer);
         final int is = i;
 
-        viewHold.imageView.setOnClickListener(new View.OnClickListener() {
+/*        viewHold.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
@@ -76,7 +76,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHold>{
                 intent.putExtra(Intent.EXTRA_EMAIL, "nihanth876@gmail.com");
                 context.startActivity(intent);
             }
-        });
+        });*/
         viewHold.imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +104,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHold>{
         public ViewHold(View itemView) {
             super(itemView);
             exoPlayerView = itemView.findViewById(R.id.player_view);
-            imageView = (ImageView)itemView.findViewById(R.id.flag);
+
             imageView1 = itemView.findViewById(R.id.full);
             cardView = itemView.findViewById(R.id.card);
             //imageView = itemView.findViewById(R.id.image_card_detail);

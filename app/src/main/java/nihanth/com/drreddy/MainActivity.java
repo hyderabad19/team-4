@@ -96,14 +96,16 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(view.getContext(), Notify.class);
                 startActivityForResult(myIntent, 0);
             }
-        });*/
+        });
+
+        getSupportActionBar().setTitle(course);
 
         db.collection("Videos").document(course)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -194,6 +196,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.quizzes) {
             // Handle the camera action
+            Intent myIntent = new Intent(MainActivity.this, QuizActivity.class);
+            startActivityForResult(myIntent, 0);
         } else if (id == R.id.upload) {
 
         } else if (id == R.id.survey) {
