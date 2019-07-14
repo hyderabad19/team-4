@@ -193,12 +193,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent ne=new Intent(MainActivity.this,QuizActivity.class);
+            startActivity(ne);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
+            Intent ne=new Intent(MainActivity.this,FaqActivity.class);
+            startActivity(ne);
 
         } else if (id == R.id.nav_share) {
 
