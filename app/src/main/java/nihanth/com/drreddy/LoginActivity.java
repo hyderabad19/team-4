@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                 String pwd=password.getText().toString();
                 if(!TextUtils.isEmpty(eid) && !TextUtils.isEmpty(pwd))
                 {
-                    pbar.setVisibility(View.VISIBLE);
+                    pbar.setVisibility(View.INVISIBLE);
                     mAuth.signInWithEmailAndPassword(eid,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>()
                     {
                         @Override
